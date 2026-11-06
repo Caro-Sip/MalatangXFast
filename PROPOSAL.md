@@ -6,33 +6,49 @@ Malatang is a convenient street food or a shop model around the world where the 
 
 ## Problem
 
-Despite the enjoyable model, these restaurant would still face service problems. For instance, there is a problem with cleanliness, cross-contamination, and life-threatening allergen due to the ingredients section opened to any customers. Another problem would be coordinating the cooks with the incoming bowls from customers and the crowded nature of a malatang kitchen. Finally, there's the fear of overspending while picking out the ingredients you'd want inside your pot just to be shocked when you finally weigh it.
+A traditional malatang restaurant can be unsanitary filled with cross-contamination and life threatening allergens. It is also often plagued by a large influx of people during rush hours causing delay and congestions.
 
 ## Users and roles
 
-- Customers: Order by selecting their ingredients, pick-up or order.
-- Staff: Manage the incoming orders to the cooks and delivery.
-- Admin: Server management and on-standby.
+- Customers: Create an account with username and password, order by selecting their soup base, ingredients and sauce, checking out and picking up there order.
+- Staff: Manage the incoming orders and deciding whether to accept it or not. They should also be able to update the order status and also decline an order.
+- Admin: Manage the inventory ingredients, restocking missing or low ingredients, and basic CRUDs operation on user accounts.
 
 ## User stories
 
+### Customer Stories
+
 1. As a customer, I want to see the price of my bowl updates dynamically as I pick my ingredients so I can know how much I'm spending before checkout.
-2. As a customer, I want to pick ingredients without having to worry about cross contaminations by other customer so I don't get an allergic reaction.
+2. As a customer, I want ingredients to be tagged with possible allergen alerts so I am aware of it.
 3. As a customer, I want to be able to select from a set of options for the convenience of ordering.
-4. As a staff, I want to be alert with a receipt of the customer order.
-5. As a staff, I want to be able to decline or accept customer orders.
-6. As a customer, I want to securely log into the website with my account.
-7. As a customer, I want to be able to pre-order my malatang without having to wait for a long line.
-8. As a staff member, I want update customer order status.
-9. As an admin, I want to be able to create, update, stock, and disable menu items that's out of stock.
-10. As a staff, i want to be see the order of the malatang in order so that i can manage the kitchen preparation.
+4. As a customer, I want to securely log into the website with my account.
+5. As a customer, I want to be able to pre-order my malatang without having to wait for a long line.
+
+### Staff Stories
+
+6. As a staff, I want to be alert with a receipt of the customer order.
+7. As a staff, I want to be able to decline or accept customer orders.
+8. As a staff, I want update customer order status.
+9. As a staff, i want to be see the order of the malatang in order so that i can manage the kitchen preparation.
+
+### Admin Stories
+10. As an admin, I want to be able to create, update, stock, and disable menu items that's out of stock.
+11. As an admin, I want to be able to perform CRUDs operation on user accounts.
 
 - Story 1, 10, and 6 should be the most important.
 
 ## MVP scope
 
-- **Must have:** User authentication (register/login with roles), dynamic custom pot builder interface, full CRUD for ingredients (Admin), order submission flow (Customer), and order status management queue (Staff).
-- **Nice to have:** Order history analytics view, saved "favorite pot" presets for customers, and rich promotional banner management.
+- **Must Have:**
+  - Story 1, 3, 4, 7, 8, 9, 10, 11
+- **Nice To Have:**
+  - Story 2, 5, 6
+
+### Which story got cut and why
+
+- Story 2: possible allergens tag is a decoration choice and isn't necessary
+- Story 5: pre-ordering is an ordering process with a set time frame and a working product would just need a relatively close pre-ordering
+- Story 6: an alert is QoL feature that doesn't necessary impair the workflow of the product
 
 ## Entities
 
