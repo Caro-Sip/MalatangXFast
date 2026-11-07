@@ -35,18 +35,15 @@ A traditional malatang restaurant can be unsanitary filled with cross-contaminat
 10. As an admin, I want to be able to create, update, stock, and disable menu items that's out of stock.
 11. As an admin, I want to be able to perform CRUDs operation on user accounts.
 
-- Story 1, 10, and 6 should be the most important.
-
 ## MVP scope
 
 - **Must Have:**
-  - Story 1, 3, 4, 7, 8, 9, 10, 11
+  - Story 1, 2, 3, 4, 7, 8, 9, 10, 11
 - **Nice To Have:**
-  - Story 2, 5, 6
+  - Story 5, 6
 
 ### Which story got cut and why
 
-- Story 2: possible allergens tag is a decoration choice and isn't necessary
 - Story 5: pre-ordering is an ordering process with a set time frame and a working product would just need a relatively close pre-ordering
 - Story 6: an alert is QoL feature that doesn't necessary impair the workflow of the product
 
