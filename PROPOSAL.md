@@ -44,7 +44,7 @@ A traditional malatang restaurant can be unsanitary filled with cross-contaminat
 
 ### Which story got cut and why
 
-- Story 5: pre-ordering is an ordering process with a set time frame and a working product would just need a relatively close pre-ordering
+- Story 5: scheduled pre-ordering is a feature that would be useful for the customer in case of long wait time or work but because pre-ordering is already apart of the flow, this should be a nice to have
 - Story 6: an alert is QoL feature that doesn't necessary impair the workflow of the product
 
 ## Entities
