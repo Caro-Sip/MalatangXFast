@@ -1,30 +1,62 @@
 :root {
-  /* colors: placeholders, swap in your Figma palette */
-  --color-primary: #d62828;
-  --color-primary-dark: #a61e1e;
-  --color-bg: #fffaf5;
-  --color-surface: #ffffff;
-  --color-text: #2b2b2b;
-  --color-text-muted: #6b6b6b;
+  /* Brand (from Figma) */
+  --color-brand: #F16244;        /* header, footer: the main colour */
+  --color-primary: #C70039;      /* high-intensity accent: primary buttons */
+  --color-primary-dark: #900C3F;
+  --color-accent: #FFC300;       /* decorative only: badges, stars, large text */
+  --color-border: #D5B336;       /* decorative borders; not for form fields */
 
-  /* typography */
+  /* Text */
+  --color-text: #1e1e1e;
+  --color-text-secondary: #363636;
+  --color-on-primary: #fff;
+
+  /* Surfaces and form borders (neutrals) */
+  --color-bg: #fff;
+  --color-surface: #faf6f3;
+  --color-border-strong: #767676; /* 4.5:1 on white, safe for inputs */
+
+  /* Semantic: never rely on colour alone, pair with an icon and text */
+  --color-error: #b3261e;
+  --color-error-bg: #fdecea;
+  --color-success: #1b6e3c;
+  --color-success-bg: #e8f5ec;
+  --color-warning: #8a5a00;
+  --color-warning-bg: #fff4d6;
+
+  /* Typography */
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: var(--font-body);
+  --font-heading: 'Eating Pasta', 'EatingPasta', var(--font-body);
 
-  /* spacing and shape */
+  /* Spacing and shape */
   --space-sm: 0.75rem;
   --space-md: 1.5rem;
   --space-lg: 3rem;
-  --radius: 1rem;
-  --max-width: 70rem;
+  --radius: 0.75rem;
+  --gutter: clamp(1rem, 5vw, 6rem);
+  --max-width: 75rem;
 }
 
-/* simple reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Custom Font - defined for both family name variants and weights (normal & bold) */
+@font-face {
+  font-family: 'Eating Pasta';
+  src: url('./fonts/eating-pasta.otf') format('opentype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
 }
+
+@font-face {
+  font-family: 'EatingPasta';
+  src: url('./fonts/eating-pasta.otf') format('opentype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Reset */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
 
 body {
   margin: 0;
@@ -34,16 +66,90 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: var(--font-heading);
+  font-weight: normal;
   line-height: 1.2;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+img { max-width: 100%; display: block; }
+
+/* Global Layout Utilities */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
-a {
-  color: var(--color-primary);
+/* Global Reusable Buttons */
+.btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 0.2);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  background: color-mix(in srgb, var(--color-primary), black 15%);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  background: color-mix(in srgb, var(--color-primary), black 30%);
+  transform: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Global Form Fields */
+.input {
+  width: 100%;
+  padding: var(--space-sm);
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius);
+}
+
+.input:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 1px;
+}
+
+.input[aria-invalid='true'] { border-color: var(--color-error); }
+
+/* Global Status Messages */
+.alert {
+  padding: var(--space-sm) var(--space-md);
+  border-left: 4px solid currentColor;
+  border-radius: var(--radius);
+}
+
+.alert-error   { color: var(--color-error);   background: var(--color-error-bg); }
+.alert-success { color: var(--color-success); background: var(--color-success-bg); }
+.alert-warning { color: var(--color-warning); background: var(--color-warning-bg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn:hover { transform: none; }
 }

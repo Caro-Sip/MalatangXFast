@@ -3,10 +3,10 @@
 </script>
 
 <template>
-  <section class="hero">
+  <section class="hero container">
     <h1>Your Bowl. Your Way.</h1>
     <p>Pick the soup base and the ingredients that you want</p>
-    <RouterLink to="/Build" class="cta">Build your bowl</RouterLink>
+    <RouterLink to="/Build" class="btn">Build your bowl</RouterLink>
   </section>
 </template>
 
