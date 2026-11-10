@@ -22,18 +22,23 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
+  max-width: 50rem;
+  margin-inline: auto;
+  width: 100%;
 }
 
-.feature-row.reverse{
+.feature-row.reverse {
   flex-direction: row-reverse;
 }
 
 .feature-image {
-  width: 40%;
+  width: 320px;
+  height: 220px;
   max-width: 100%;
   border-radius: 1rem;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .feature-text {
@@ -45,10 +50,15 @@ defineProps<{
   .feature-row,
   .feature-row.reverse {
     flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem 1rem;
   }
 
   .feature-image {
     width: 100%;
+    max-width: 220px;
+    height: 150px;
   }
 }
 </style>

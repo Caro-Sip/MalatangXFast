@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import vegImg from "@/assets/images/Veggies.jpg";
 import beefImg from "@/assets/images/meat1.jpg";
 import sauceImg from "@/assets/images/Hot-pot-sauces.jpg";
