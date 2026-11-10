@@ -52,8 +52,11 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     const match = users.find((u) => u.email.toLowerCase() === email.toLowerCase())
-    if (!match || match.password !== password) {
-      throw new Error('Email or password is incorrect')
+    if (!match) {
+      throw new Error('Email is not registered')
+    }
+    if (match.password !== password) {
+      throw new Error('Incorrect password')
     }
 
     const { password: _, ...userData } = match
