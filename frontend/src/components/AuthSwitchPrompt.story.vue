@@ -3,7 +3,7 @@ import AuthSwitchPrompt from './AuthSwitchPrompt.vue'
 </script>
 
 <template>
-  <Story title="AuthSwitchPrompt">
+  <Story title="Auth/AuthSwitchPrompt">
     <Variant title="Sign up page">
       <AuthSwitchPrompt text="Already have an account?" link-label="Log in" to="/login" />
     </Variant>
