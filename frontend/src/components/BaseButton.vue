@@ -13,8 +13,26 @@ withDefaults(
 </script>
 
 <template>
-    <button class="base-button" :type="type" :disabled="disabled || loading" :aria-busy="loading">
-    <slot />
+  <RouterLink
+    v-if="to"
+    :to="to"
+    class="base-button"
+    :class="{ 'is-loading': loading, 'is-disabled': disabled }"
+    :aria-disabled="disabled || loading ? 'true' : undefined"
+  >
+    <span :class="{ 'label hidden': loading }"><slot /></span>
+    <span v-if="loading" class="spinner" aria-hidden="true"></span>
+  </RouterLink>
+
+  <button
+    v-else
+    class="base-button"
+    :type="type"
+    :disabled="disabled || loading"
+    :aria-busy="loading"
+  >
+    <span :class="{ 'label hidden': loading }"><slot /></span>
+    <span v-if="loading" class="spinner" aria-hidden="true"></span>
   </button>
 </template>
 
