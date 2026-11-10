@@ -10,7 +10,7 @@ import BaseButton from '@/components/BaseButton.vue'
         <p class="hero-subtitle">Packed with Flavour!</p>
         <p class="hero-desc">Fresh ingredients, bold flavors.</p>
       </div>
-      <BaseButton to="/builder" class="hero-btn">make your own now!</BaseButton>
+      <BaseButton to="/build" class="hero-btn">make your own now!</BaseButton>
     </div>
   </section>
 </template>
