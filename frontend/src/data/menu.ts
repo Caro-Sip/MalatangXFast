@@ -38,6 +38,7 @@ export const fixtureBroths: Broth[] = [
 ]
 
 export const fixtureIngredients: Ingredient[] = [
+  // Proteins
   {
     id: 'chicken',
     name: 'Chicken',
@@ -47,46 +48,6 @@ export const fixtureIngredients: Ingredient[] = [
     allergens: [],
     isAvailable: true,
     category: 'meat',
-  },
-  {
-    id: 'wheat-noodles',
-    name: 'Wheat noodles',
-    price: 2.0,
-    portionGrams: 100,
-    portionLabel: '1 portion · 100 g',
-    allergens: ['wheat'],
-    isAvailable: true,
-    category: 'noodle',
-  },
-  {
-    id: 'bok-choy',
-    name: 'Bok choy',
-    price: 1.5,
-    portionGrams: 60,
-    portionLabel: '1 portion · 60 g',
-    allergens: [],
-    isAvailable: true,
-    category: 'veg',
-  },
-  {
-    id: 'mushrooms',
-    name: 'Mushrooms',
-    price: 1.5,
-    portionGrams: 50,
-    portionLabel: '1 portion · 50 g',
-    allergens: [],
-    isAvailable: true,
-    category: 'veg',
-  },
-  {
-    id: 'tofu',
-    name: 'Tofu',
-    price: 2.0,
-    portionGrams: 80,
-    portionLabel: '1 portion · 80 g',
-    allergens: ['soy'],
-    isAvailable: true,
-    category: 'veg',
   },
   {
     id: 'beef',
@@ -99,11 +60,55 @@ export const fixtureIngredients: Ingredient[] = [
     category: 'meat',
   },
   {
-    id: 'scallions',
-    name: 'Scallions',
-    price: 1.0,
-    portionGrams: 30,
-    portionLabel: '1 portion · 30 g',
+    id: 'tofu',
+    name: 'Tofu',
+    price: 2.0,
+    portionGrams: 80,
+    portionLabel: '1 portion · 80 g',
+    allergens: ['soy'],
+    isAvailable: true,
+    category: 'meat',
+  },
+  {
+    id: 'fish-balls',
+    name: 'Fish balls',
+    price: 3.0,
+    portionGrams: 75,
+    portionLabel: '1 portion · 75 g',
+    allergens: ['fish', 'wheat'],
+    isAvailable: true,
+    category: 'meat',
+  },
+
+  // Noodles
+  {
+    id: 'wheat-noodles',
+    name: 'Wheat noodles',
+    price: 2.0,
+    portionGrams: 100,
+    portionLabel: '1 portion · 100 g',
+    allergens: ['wheat'],
+    isAvailable: true,
+    category: 'noodle',
+  },
+  {
+    id: 'glass-noodles',
+    name: 'Glass noodles',
+    price: 2.0,
+    portionGrams: 100,
+    portionLabel: '1 portion · 100 g',
+    allergens: [],
+    isAvailable: true,
+    category: 'noodle',
+  },
+
+  // Veggies & Greens
+  {
+    id: 'bok-choy',
+    name: 'Bok choy',
+    price: 1.5,
+    portionGrams: 60,
+    portionLabel: '1 portion · 60 g',
     allergens: [],
     isAvailable: true,
     category: 'veg',
@@ -114,6 +119,58 @@ export const fixtureIngredients: Ingredient[] = [
     price: 1.5,
     portionGrams: 60,
     portionLabel: '1 portion · 60 g',
+    allergens: [],
+    isAvailable: true,
+    category: 'veg',
+  },
+  {
+    id: 'corn',
+    name: 'Sweet corn',
+    price: 1.5,
+    portionGrams: 80,
+    portionLabel: '1 portion · 80 g',
+    allergens: [],
+    isAvailable: true,
+    category: 'veg',
+  },
+  {
+    id: 'potato',
+    name: 'Potato slices',
+    price: 1.5,
+    portionGrams: 70,
+    portionLabel: '1 portion · 70 g',
+    allergens: [],
+    isAvailable: true,
+    category: 'veg',
+  },
+  {
+    id: 'scallions',
+    name: 'Scallions',
+    price: 1.0,
+    portionGrams: 30,
+    portionLabel: '1 portion · 30 g',
+    allergens: [],
+    isAvailable: true,
+    category: 'veg',
+  },
+
+  // Fungus & Mushrooms
+  {
+    id: 'mushrooms',
+    name: 'Mushrooms',
+    price: 1.5,
+    portionGrams: 50,
+    portionLabel: '1 portion · 50 g',
+    allergens: [],
+    isAvailable: true,
+    category: 'veg',
+  },
+  {
+    id: 'wood-ear',
+    name: 'Wood ear fungus',
+    price: 1.5,
+    portionGrams: 50,
+    portionLabel: '1 portion · 50 g',
     allergens: [],
     isAvailable: true,
     category: 'veg',
@@ -153,3 +210,7 @@ export const fixtureSauces: Sauce[] = [
   },
 ]
 
+// Convenient aliases matching user's snippets
+export const ingredients = fixtureIngredients
+export const broths = fixtureBroths
+export const sauces = fixtureSauces
