@@ -1,132 +1,60 @@
-import { describe, it, expect, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useMenuStore } from '../menuStore'
-import type { MenuResponse } from '@/api/menuApi'
-import type { Ingredient } from '@/types'
+import { fetchMenu } from '@/api/menuApi'
 
-const mockMenuData: MenuResponse = {
-  broths: [
-    {
-      id: 'test-broth',
-      name: 'Test Broth',
-      price: 5.0,
-      volumeMl: 400,
-      allergens: [],
-      isAvailable: true,
-      category: 'broth',
-    },
-  ],
-  ingredients: [
-    {
-      id: 'test-ing',
-      name: 'Test Ingredient',
-      price: 3.0,
-      portionGrams: 80,
-      allergens: [],
-      isAvailable: true,
-      category: 'meat',
-    },
-  ],
-  sauces: [
-    {
-      id: 'test-sauce',
-      name: 'Test Sauce',
-      price: 0.5,
-      volumeMl: 15,
-      allergens: [],
-      isAvailable: true,
-      category: 'sauce',
-    },
-  ],
-  spiceLevels: [
-    { value: 'mild', label: 'Mild' },
-    { value: 'medium', label: 'Medium' },
-  ],
+vi.mock('@/api/menuApi')
+
+const menu = {
+  broths: [{ id: 'mala', name: 'Mala', price: 5, allergens: [], volumeMl: 400, isAvailable: true }],
+  ingredients: [{ id: 'tofu', name: 'Tofu', price: 2, portionGrams: 80, allergens: ['soy'], isAvailable: true }],
+  sauces: [{ id: 'garlic', name: 'Garlic', price: 0, allergens: [], isAvailable: true }],
 }
 
 describe('menuStore', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
+    vi.mocked(fetchMenu).mockReset()
   })
 
-  it('initializes with empty state', () => {
+  it('starts empty and not loading', () => {
     const store = useMenuStore()
-    expect(store.ingredients).toHaveLength(0)
-    expect(store.broths).toHaveLength(0)
-    expect(store.sauces).toHaveLength(0)
+    expect(store.ingredients).toEqual([])
     expect(store.isLoading).toBe(false)
     expect(store.loadError).toBeNull()
   })
 
-  it('fetches menu data successfully', async () => {
+  it('loads the menu', async () => {
+    vi.mocked(fetchMenu).mockResolvedValue(menu)
     const store = useMenuStore()
-    const mockFetcher = async () => mockMenuData
-
-    await store.fetch(mockFetcher)
-
+    await store.load()
+    expect(store.broths).toEqual(menu.broths)
+    expect(store.ingredients).toEqual(menu.ingredients)
+    expect(store.sauces).toEqual(menu.sauces)
     expect(store.isLoading).toBe(false)
+  })
+
+  it('sets loadError when the fetch fails, and clears it on retry', async () => {
+    vi.mocked(fetchMenu).mockRejectedValueOnce(new Error('network'))
+    const store = useMenuStore()
+    await store.load()
+    expect(store.loadError).toContain("couldn't load")
+    expect(store.isLoading).toBe(false)
+
+    vi.mocked(fetchMenu).mockResolvedValueOnce(menu)
+    await store.load()
     expect(store.loadError).toBeNull()
     expect(store.ingredients).toHaveLength(1)
-    expect(store.broths).toHaveLength(1)
-    expect(store.sauces).toHaveLength(1)
-    expect(store.isLoaded).toBe(true)
-    expect(store.getIngredientById('test-ing')?.name).toBe('Test Ingredient')
   })
 
-  it('captures errors and resets loading on failure', async () => {
+  it('is loading while the request is in flight', async () => {
+    let resolve!: (m: typeof menu) => void
+    vi.mocked(fetchMenu).mockReturnValue(new Promise((r) => (resolve = r)))
     const store = useMenuStore()
-    const failingFetcher = async () => {
-      throw new Error('Network error')
-    }
-
-    await store.fetch(failingFetcher)
-
+    const pending = store.load()
+    expect(store.isLoading).toBe(true)
+    resolve(menu)
+    await pending
     expect(store.isLoading).toBe(false)
-    expect(store.loadError).toBe('Network error')
-    expect(store.ingredients).toHaveLength(0)
-  })
-
-  it('toggles item availability', async () => {
-    const store = useMenuStore()
-    await store.fetch(async () => mockMenuData)
-
-    store.setAvailability('test-ing', false)
-    expect(store.getIngredientById('test-ing')?.isAvailable).toBe(false)
-
-    store.setAvailability('test-broth', false)
-    expect(store.getBrothById('test-broth')?.isAvailable).toBe(false)
-
-    store.setAvailability('test-sauce', false)
-    expect(store.getSauceById('test-sauce')?.isAvailable).toBe(false)
-  })
-
-  it('updates and creates ingredients', async () => {
-    const store = useMenuStore()
-    await store.fetch(async () => mockMenuData)
-
-    store.updateIngredient({
-      id: 'test-ing',
-      name: 'Updated Ingredient',
-      price: 3.5,
-      portionGrams: 90,
-      allergens: ['wheat'],
-      isAvailable: true,
-      category: 'meat',
-    })
-    expect(store.getIngredientById('test-ing')?.name).toBe('Updated Ingredient')
-    expect(store.getIngredientById('test-ing')?.price).toBe(3.5)
-
-    const newIng: Ingredient = {
-      id: 'new-ing',
-      name: 'New Item',
-      price: 2.0,
-      portionGrams: 50,
-      allergens: [],
-      isAvailable: true,
-      category: 'veg',
-    }
-    store.createIngredient(newIng)
-    expect(store.ingredients).toHaveLength(2)
-    expect(store.getIngredientById('new-ing')?.name).toBe('New Item')
   })
 })

@@ -1,21 +1,7 @@
-import { broths, ingredients, sauces, spiceLevels } from '@/data/menu'
-import type { Broth, Ingredient, Sauce, SpiceLevel } from '@/types'
+import type { Menu } from '@/types'
+import { broths, ingredients, sauces } from '@/data/menu'
 
-export interface MenuResponse {
-  ingredients: Ingredient[]
-  broths: Broth[]
-  sauces: Sauce[]
-  spiceLevels: { value: SpiceLevel; label: string }[]
-}
-
-export async function fetchMenu(): Promise<MenuResponse> {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 300))
-
-  return {
-    ingredients: JSON.parse(JSON.stringify(ingredients)),
-    broths: JSON.parse(JSON.stringify(broths)),
-    sauces: JSON.parse(JSON.stringify(sauces)),
-    spiceLevels: [...spiceLevels],
-  }
+export async function fetchMenu(): Promise<Menu> {
+  await new Promise((resolve) => setTimeout(resolve, 300)) // simulate network
+  return { broths, ingredients, sauces }
 }

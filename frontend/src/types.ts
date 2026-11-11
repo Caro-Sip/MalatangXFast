@@ -35,6 +35,12 @@ export interface Sauce extends Ingredient {
   volumeMl?: number
 }
 
+export interface Menu {
+  broths: Broth[]
+  ingredients: Ingredient[]
+  sauces: Sauce[]
+}
+
 export interface SummaryLine {
   id: string
   name: string // e.g. "Mala broth base"

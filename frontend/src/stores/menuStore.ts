@@ -1,62 +1,30 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { Broth, Ingredient, Sauce, SpiceLevel } from '@/types'
-import { fetchMenu as apiFetchMenu } from '@/api/menuApi'
+import type { Broth, Ingredient, Sauce } from '@/types'
+import { fetchMenu } from '@/api/menuApi'
 
 export const useMenuStore = defineStore('menu', () => {
-  const ingredients = ref<Ingredient[]>([])
   const broths = ref<Broth[]>([])
+  const ingredients = ref<Ingredient[]>([])
   const sauces = ref<Sauce[]>([])
-  const spiceLevels = ref<{ value: SpiceLevel; label: string }[]>([])
-
   const isLoading = ref(false)
   const loadError = ref<string | null>(null)
 
-  const isLoaded = computed(() => ingredients.value.length > 0)
+  async function load() {
+    if (isLoading.value) return // ignore double clicks on Retry
 
-  async function fetch(fetcher = apiFetchMenu) {
     isLoading.value = true
     loadError.value = null
     try {
-      const data = await fetcher()
-      ingredients.value = data.ingredients
-      broths.value = data.broths
-      sauces.value = data.sauces
-      spiceLevels.value = data.spiceLevels
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Failed to load menu'
-      loadError.value = message
+      const menu = await fetchMenu()
+      broths.value = menu.broths
+      ingredients.value = menu.ingredients
+      sauces.value = menu.sauces
+    } catch {
+      loadError.value = "We couldn't load the menu. Please try again."
     } finally {
       isLoading.value = false
     }
-  }
-
-  function setAvailability(id: string, isAvailable: boolean) {
-    const ing = ingredients.value.find((i) => i.id === id)
-    if (ing) {
-      ing.isAvailable = isAvailable
-      return
-    }
-    const broth = broths.value.find((b) => b.id === id)
-    if (broth) {
-      broth.isAvailable = isAvailable
-      return
-    }
-    const sauce = sauces.value.find((s) => s.id === id)
-    if (sauce) {
-      sauce.isAvailable = isAvailable
-    }
-  }
-
-  function updateIngredient(updated: Ingredient) {
-    const index = ingredients.value.findIndex((i) => i.id === updated.id)
-    if (index !== -1) {
-      ingredients.value[index] = { ...updated }
-    }
-  }
-
-  function createIngredient(newIngredient: Ingredient) {
-    ingredients.value.push({ ...newIngredient })
   }
 
   function getIngredientById(id: string): Ingredient | undefined {
@@ -72,17 +40,13 @@ export const useMenuStore = defineStore('menu', () => {
   }
 
   return {
-    ingredients,
     broths,
+    ingredients,
     sauces,
-    spiceLevels,
     isLoading,
     loadError,
-    isLoaded,
-    fetch,
-    setAvailability,
-    updateIngredient,
-    createIngredient,
+    load,
+    fetch: load,
     getIngredientById,
     getBrothById,
     getSauceById,
