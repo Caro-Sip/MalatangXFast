@@ -34,3 +34,17 @@ export interface Sauce extends Ingredient {
   category?: 'sauce'
   volumeMl?: number
 }
+
+export interface SummaryLine {
+  id: string
+  name: string // e.g. "Mala broth base"
+  quantity: number
+  price: number // line total (unit price x quantity)
+}
+
+export interface SummaryGroup {
+  id: 'bowl' | 'sauce'
+  title: string // "Malatang bowl" / "Custom sauce"
+  subtotal: number
+  lines: SummaryLine[]
+}
