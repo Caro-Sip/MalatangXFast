@@ -83,5 +83,9 @@ defineEmits<{ review: [] }>()
   font-size: 0.75rem;
   color: var(--color-border-strong, #767676);
 }
+
+.summary :deep(.base-button) {
+  width: 100%;
+}
 </style>
 

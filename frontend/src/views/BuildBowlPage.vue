@@ -33,7 +33,7 @@ function review() {
 
 <template>
   <DefaultLayout>
-    <main class="page container">
+    <main class="page">
       <header class="top">
         <PageIntro
           title="Build your bowl"
@@ -100,10 +100,13 @@ function review() {
 
 <style scoped>
 .page {
+  width: 100%;
+  max-width: 100rem;
+  margin-inline: auto;
+  padding: 1.5rem clamp(1rem, 2.5vw, 2.5rem);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding-block: 2rem;
 }
 .top {
   display: flex;
@@ -118,7 +121,7 @@ function review() {
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 22rem;
+  grid-template-columns: minmax(0, 1fr) 21.5rem;
   gap: 1.5rem;
   align-items: start;
 }

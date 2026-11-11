@@ -13,7 +13,7 @@ function handleLogout() {
 
 <template>
   <header class="site-header">
-    <div class="container">
+    <div class="header-content">
       <RouterLink to="/" class="logo">MalatangXFast</RouterLink>
       <nav class="nav">
         <template v-if="auth.isAuthenticated">
@@ -33,12 +33,14 @@ function handleLogout() {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding-block: 0.75rem;
+  padding: 0.75rem clamp(1rem, 2.5vw, 2.5rem);
   background: var(--color-brand);
   box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
 }
 
-.site-header .container {
+.header-content {
+  max-width: 100rem;
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
