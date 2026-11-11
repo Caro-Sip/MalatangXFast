@@ -26,11 +26,11 @@ export interface Ingredient {
 }
 
 export interface Broth extends Ingredient {
-  category: 'broth'
+  category?: 'broth'
   volumeMl?: number
 }
 
 export interface Sauce extends Ingredient {
-  category: 'sauce'
+  category?: 'sauce'
   volumeMl?: number
 }
