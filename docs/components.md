@@ -214,6 +214,8 @@ State and behavior
 
 One bowl per order.
 
+> **Mockup vs. spec note:** The mockup shows "Bowl 1 · Sam's Bowl" and "+ Add another bowl", but the spec strictly supports one bowl per order. Multiple bowls, bowl tabs, and bowl naming are excluded from MVP to prevent scope creep.
+
 ```
 BuildBowlPage (inside DefaultLayout)
 ├── PageIntro
@@ -252,6 +254,8 @@ BuildBowlPage (inside DefaultLayout)
 | `IngredientCard` | `ingredient`, `quantity` | `increment`, `decrement` | none |
 | `SaucePanel` | `sauces`, `quantities` | `change-quantity(id, qty)` | none |
 | `SauceOption` | `sauce`, `quantity` | `increment`, `decrement` | none |
+| `AllergenLabel` | `allergens: string[]` | none | none |
+| `QuantityStepper` | `quantity`, `max = 5`, `disabled = false` | `increment`, `decrement` | none |
 | `BuildSummary` | `items`, `total`, `allergens`, `customerName`, `spiceLevel`, `cutlery`, `canReview` | `review` | none |
 
 State ownership
