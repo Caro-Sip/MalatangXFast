@@ -4,13 +4,15 @@ import BaseButton from '@/components/BaseButton.vue'
 
 <template>
   <section class="hero-banner">
-    <div class="hero-card">
-      <div class="hero-text">
-        <h1 class="hero-title">Malatang</h1>
-        <p class="hero-subtitle">Packed with Flavour!</p>
-        <p class="hero-desc">Fresh ingredients, bold flavors.</p>
+    <div class="hero-inner">
+      <div class="hero-card">
+        <div class="hero-text">
+          <h1 class="hero-title">Malatang</h1>
+          <p class="hero-subtitle">Packed with Flavour!</p>
+          <p class="hero-desc">Fresh ingredients, bold flavors.</p>
+        </div>
+        <BaseButton to="/build" class="hero-btn">make your own now!</BaseButton>
       </div>
-      <BaseButton to="/build" class="hero-btn">make your own now!</BaseButton>
     </div>
   </section>
 </template>
@@ -18,15 +20,26 @@ import BaseButton from '@/components/BaseButton.vue'
 <style scoped>
 .hero-banner {
   background-color: var(--color-brand);
-  background-image: url('@/assets/images/Background.jpg');
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url('@/assets/images/Background.jpg');
   background-repeat: no-repeat;
   background-position: left center;
   background-size: cover;
   min-height: 380px;
   display: flex;
   align-items: center;
+  padding-block: 2.5rem;
+}
+
+/* Matches the exact width and horizontal padding of .feature-row */
+.hero-inner {
+  max-width: 72rem; /* Increase to e.g. 64rem if you want it aligned with a wider navbar instead */
+  margin-inline: auto;
+  padding-inline: 2rem;
+  width: 100%;
+  display: flex;
   justify-content: flex-end;
-  padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
 }
 
 .hero-card {
@@ -68,9 +81,13 @@ import BaseButton from '@/components/BaseButton.vue'
 
 @media (max-width: 850px) {
   .hero-banner {
-    justify-content: center;
     background-position: center;
     padding: 2rem 1rem;
+  }
+
+  .hero-inner {
+    justify-content: center;
+    padding-inline: 0;
   }
 
   .hero-card {
