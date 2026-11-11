@@ -7,3 +7,5 @@ export const SPICE_LABELS: Record<SpiceLevel, string> = {
   'extra-hot': 'Extra hot',
 }
 
+export const MAX_PORTIONS = 5
+
