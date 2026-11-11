@@ -72,6 +72,7 @@ DefaultLayout
 | `OptionGroup` | `label`, `options: { id, label, price? }[]`, `modelValue` | `update:modelValue` | none |
 | `OptionChip` | `label`, `price?`, `selected`, `disabled` | `click` | none |
 | `AllergenLabel` | `allergens: string[]` | none | none |
+| `AllergenDisclaimer` | none | none | none |
 | `AllergySummary` | `allergens: string[]` | none | none |
 | `AllergenDisclaimer` | none | none | none |
 | `BowlSummary` | `items: SummaryItem[]`, `title?` | none | none |
@@ -257,6 +258,7 @@ BuildBowlPage (inside DefaultLayout)
 | `SaucePanel` | `sauces`, `quantities` | `change-quantity(id, qty)` | none |
 | `SauceOption` | `sauce`, `quantity` | `increment`, `decrement` | none |
 | `AllergenLabel` | `allergens: string[]` | none | none |
+| `AllergenDisclaimer` | none | none | none |
 | `QuantityStepper` | `quantity`, `max = 5`, `disabled = false` | `increment`, `decrement` | none |
 | `TotalRow` | `label`, `amount` | none | none |
 | `AllergySummary` | `allergens: string[]` | none | none |

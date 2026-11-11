@@ -73,14 +73,20 @@ function change(id: string, delta: number) {
 
 .options {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 1rem;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 48rem) {
   .panel {
     grid-template-columns: 1fr;
     gap: 0.75rem;
+  }
+}
+
+@media (max-width: 28rem) {
+  .options {
+    grid-template-columns: 1fr;
   }
 }
 </style>
