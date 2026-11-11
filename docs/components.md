@@ -232,7 +232,7 @@ BuildBowlPage (inside DefaultLayout)
 │       ├── AllergenLabel
 │       └── QuantityStepper
 ├── SaucePanel
-│   └── SauceOption (x3)
+│   └── SauceOption (xN)
 │       ├── AllergenLabel
 │       └── QuantityStepper
 ├── AllergenDisclaimer
