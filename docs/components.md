@@ -249,14 +249,19 @@ BuildBowlPage (inside DefaultLayout)
 | `PageIntro` | `title`, `tagline` | none | none |
 | `PickupNotice` | `title`, `text` | none | none |
 | `BrothPanel` | `broths`, `selectedBrothId`, `spiceLevels`, `selectedSpice` | `update:broth(id)`, `update:spice(level)` | none |
-| `AllergenNote` | `allergens`, `volumeLabel` | none | none |
+| `OptionGroup` | `legend`, `name`, `options: {value, label, disabled?}[]`, `modelValue` | `update:modelValue(value)` | none |
+| `OptionChip` | `name`, `value`, `label`, `checked`, `disabled` | `select` | none |
+| `AllergenNote` | `label`, `allergens`, `volumeLabel` | none | none |
 | `IngredientGrid` | `ingredients`, `quantities: Record<id, number>` | `change-quantity(id, qty)` | none |
 | `IngredientCard` | `ingredient`, `quantity` | `increment`, `decrement` | none |
 | `SaucePanel` | `sauces`, `quantities` | `change-quantity(id, qty)` | none |
 | `SauceOption` | `sauce`, `quantity` | `increment`, `decrement` | none |
 | `AllergenLabel` | `allergens: string[]` | none | none |
 | `QuantityStepper` | `quantity`, `max = 5`, `disabled = false` | `increment`, `decrement` | none |
-| `BuildSummary` | `items`, `total`, `allergens`, `customerName`, `spiceLevel`, `cutlery`, `canReview` | `review` | none |
+| `TotalRow` | `label`, `amount` | none | none |
+| `AllergySummary` | `allergens: string[]` | none | none |
+| `BowlSummary` | `groups: SummaryGroup[]` | none | none |
+| `BuildSummary` | `groups`, `total`, `allergens`, `customerName`, `spiceLevel`, `cutlery`, `canReview` | `review` | none |
 
 State ownership
 
